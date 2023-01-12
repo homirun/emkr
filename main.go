@@ -21,8 +21,15 @@ THE SOFTWARE.
 */
 package main
 
-import "github.com/homirun/emkr/cmd"
+import (
+	"fmt"
+	"github.com/homirun/emkr/cmd"
+)
 
 func main() {
-	cmd.Execute()
+	r, err := cmd.Pipe()
+	if err != nil {
+		err.Error()
+	}
+	fmt.Printf("%s", r)
 }
