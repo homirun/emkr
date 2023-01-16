@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"flag"
+	"fmt"
 	"io"
 	"os"
 )
@@ -14,6 +16,9 @@ func Pipe() ([]byte, error) {
 	return b, nil
 }
 
-//func File() ([]byte, error) {
-//	return
-//}
+func Flag() {
+	k := flag.String("k", "", "key")
+	v := flag.String("v", "", "value")
+	flag.Parse()
+	fmt.Printf("%s: %s\n", *k, *v)
+}

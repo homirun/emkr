@@ -31,5 +31,6 @@ func main() {
 		err.Error()
 	}
 
+	cmd.Flag()
 	cmd.ParseYaml(r)
 }
