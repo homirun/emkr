@@ -22,7 +22,6 @@ THE SOFTWARE.
 package main
 
 import (
-	"fmt"
 	"github.com/homirun/emkr/cmd"
 )
 
@@ -31,5 +30,6 @@ func main() {
 	if err != nil {
 		err.Error()
 	}
-	fmt.Printf("%s", r)
+
+	cmd.ParseYaml(r)
 }
