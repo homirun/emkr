@@ -8,7 +8,7 @@ Extract Kubernetes manifests that match the specified key and value.
 
 
 ```
-$ cat multiple_documents.yaml | ./emkr -k kind -v Deployment
+$ cat multiple_documents.yaml | emkr -k kind -v Deployment
 
 > ---
   apiVersion: apps/v1
