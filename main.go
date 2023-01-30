@@ -22,6 +22,7 @@ THE SOFTWARE.
 package main
 
 import (
+	"fmt"
 	"github.com/homirun/emkr/cmd"
 )
 
@@ -31,6 +32,11 @@ func main() {
 		err.Error()
 	}
 
-	cmd.Flag()
-	cmd.ParseYaml(r)
+	k, v := cmd.Flag()
+	extractedYaml := cmd.Extract(*k, *v, cmd.ParseToYaml(r))
+
+	for _, y := range extractedYaml {
+		fmt.Println("---")
+		fmt.Printf("%s\n", y)
+	}
 }
