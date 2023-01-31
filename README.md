@@ -51,3 +51,27 @@ $ cat multiple_documents.yaml | emkr -k kind -v Deployment
         - name: apps
           image: fugaapp:1.0
 ```
+```
+$ cat multiple_documents.yaml | emkr -k metadata.labels.app -v hoge
+
+>  ---
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: hoge-deployment
+     labels:
+       app: hoge
+   spec:
+     replicas: 3
+     selector:
+       matchLabels:
+         app: hoge
+     template:
+       metadata:
+         labels:
+           app: hoge
+       spec:
+         containers:
+         - name: apps
+           image: hogeapp:1.0
+```
