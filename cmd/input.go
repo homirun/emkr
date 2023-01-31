@@ -4,6 +4,7 @@ import (
 	"flag"
 	"io"
 	"os"
+	"strings"
 )
 
 func Pipe() ([]byte, error) {
@@ -15,9 +16,10 @@ func Pipe() ([]byte, error) {
 	return b, nil
 }
 
-func Flag() (*string, *string) {
+func Flag() ([]string, *string) {
 	k := flag.String("k", "", "key")
 	v := flag.String("v", "", "value")
 	flag.Parse()
-	return k, v
+	kl := strings.Split(*k, ".")
+	return kl, v
 }

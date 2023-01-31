@@ -2,18 +2,28 @@ package cmd
 
 import "fmt"
 
-func Extract(key string, value string, yamls []map[string]interface{}) [][]byte {
+// Extract keyLists example: [metadata, name]
+func Extract(keyLists []string, value string, yamls []map[string]interface{}) [][]byte {
 	var extracted [][]byte
 	for _, y := range yamls {
-		if y[key] == nil || y[key] != value {
-			continue
+		t := y
+		for i, k := range keyLists {
+			if i < (len(keyLists) - 1) {
+				w := t[k]
+				t = w.(map[string]interface{})
+				continue
+			} else {
+				if t[k] == value {
+					s, err := ParseToString(y)
+					if err != nil {
+						fmt.Errorf("%s", err)
+						return nil
+					}
+					extracted = append(extracted, s)
+					break
+				}
+			}
 		}
-		s, err := ParseToString(y)
-		if err != nil {
-			fmt.Errorf("%s", err)
-			return nil
-		}
-		extracted = append(extracted, s)
 	}
 	return extracted
 }
