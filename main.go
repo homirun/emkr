@@ -32,8 +32,8 @@ func main() {
 		err.Error()
 	}
 
-	k, v := cmd.Flag()
-	extractedYaml := cmd.Extract(*k, *v, cmd.ParseToYaml(r))
+	kl, v := cmd.Flag()
+	extractedYaml := cmd.Extract(kl, *v, cmd.ParseToYaml(r))
 
 	for _, y := range extractedYaml {
 		fmt.Println("---")
